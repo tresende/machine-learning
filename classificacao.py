@@ -12,12 +12,12 @@ cachorro1 = [1, 1, 1]
 cachorro2 = [0, 1, 1]
 cachorro3 = [0, 1, 1]
 
-dados = [ porco1, porco2, porco3, cachorro1, cachorro2, cachorro3 ]
+dados = [porco1, porco2, porco3, cachorro1, cachorro2, cachorro3]
 
 # +1 porco
 # -1 cachorro
 
-marcacoes = [1 ,1 ,1 , -1, -1, -1]
+marcacoes = [1, 1, 1, -1, -1, -1]
 
 modelo.fit(dados, marcacoes)
 
@@ -39,5 +39,3 @@ taxa_de_acerto = 100.0 * total_de_acertos / total_de_elementos
 
 print resultado
 print taxa_de_acerto
-
-			

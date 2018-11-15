@@ -1,16 +1,17 @@
+from sklearn.naive_bayes import MultinomialNB
 from dados import carregar_acessos
-x, y = carregar_acessos();
+
+x, y = carregar_acessos()
 treino_dados = x[:90]
 treino_marcacoes = y[:90]
 
 teste_dados = x[-9:]
 teste_marcacoes = y[-9:]
 
-from sklearn.naive_bayes import MultinomialNB
 modelo = MultinomialNB()
 modelo.fit(treino_dados, treino_marcacoes)
 
-#comprou ?
+# comprou ?
 resultado = modelo.predict(teste_dados)
 diferencas = resultado - teste_marcacoes
 
