@@ -10,5 +10,6 @@ RUN apt-get update \
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 RUN /usr/bin/python2.7 get-pip.py
 RUN pip install scikit-learn
+RUN pip install pandas
 RUN mv /usr/bin/python2.7 /usr/bin/python
 WORKDIR /var/www

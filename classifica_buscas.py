@@ -1,9 +1,14 @@
-from dados import carregar_buscas
+import pandas as pd
 
-x, y = carregar_buscas()
-# treino_dados = x[:90]
-# treino_marcacoes = y[:90]
+df = pd.read_csv('buscas.csv')
 
-# teste_dados = x[-9:]
-# teste_marcacoes = y[-9:]
-print(y);
+x_df = df[['home', 'busca', 'logado']]
+y_df = df['comprou']
+
+Xdummies = pd.get_dummies(x_df)
+Ydummies = y_df
+
+x = Xdummies.values;
+y = Ydummies.values;
+
+print(y)
