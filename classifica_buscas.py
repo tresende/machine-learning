@@ -1,5 +1,6 @@
 import pandas as pd
 from sklearn.naive_bayes import MultinomialNB
+from collections import Counter
 
 df = pd.read_csv('buscas.csv')
 
@@ -11,6 +12,10 @@ Ydummies = y_df
 
 x = Xdummies.values;
 y = Ydummies.values;
+
+#eficacia do algoritimo que responde so um valor 0 ou 1, depende que qual aparecer mais no csv
+taxa_de_acerto_base = 100.0 * max(Counter(y).itervalues()) / len(y)
+print("Taxa de acerto base: %f" % taxa_de_acerto_base)
 
 portcentagem_de_treino = 0.9
 tamanho_de_treino = int(portcentagem_de_treino * len(y))
@@ -26,17 +31,14 @@ modelo = MultinomialNB()
 modelo.fit(treino_dados, treino_marcacoes)
 
 resultado = modelo.predict(teste_dados)
-print resultado
 
-diferencas = resultado - teste_marcacoes
+diferencas = sum(resultado == teste_marcacoes)
+acertos = resultado == teste_marcacoes
 
-acertos = [d for d in diferencas if d == 0]
-total_de_acertos = len(acertos)
+total_de_acertos = sum(acertos)
 total_de_elementos = len(teste_dados)
 
 taxa_de_acerto = 100.0 * total_de_acertos / total_de_elementos
 
-# quantas vezes eu acertei ?
-print taxa_de_acerto
-
-# print(y)
+print("Taxa de acerto do algoritmo: %f" % taxa_de_acerto)
+print(total_de_elementos)
